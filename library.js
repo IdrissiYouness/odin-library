@@ -32,3 +32,13 @@ myLibrary.forEach((book,index) => {
   console.log (`Book ${index+1} :`);
   console.log(`isArchived ${book.isArchived}`);
 });
+
+function showPopUp (id) {
+  const popup = document.getElementById(id);
+  popup.classList.toggle("show");
+}
+
+// event Listeners
+
+ const addBookBtn = document.querySelector('.add-book-btn');
+

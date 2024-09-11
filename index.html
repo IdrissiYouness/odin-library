@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="library.js" defer></script>
     <title>Library</title>
 </head>
 <body>
@@ -12,26 +13,53 @@
             <svg id="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M160 96a96 96 0 1 1 192 0A96 96 0 1 1 160 96zm80 152l0 264-48.4-24.2c-20.9-10.4-43.5-17-66.8-19.3l-96-9.6C12.5 457.2 0 443.5 0 427L0 224c0-17.7 14.3-32 32-32l30.3 0c63.6 0 125.6 19.6 177.7 56zm32 264l0-264c52.1-36.4 114.1-56 177.7-56l30.3 0c17.7 0 32 14.3 32 32l0 203c0 16.4-12.5 30.2-28.8 31.8l-96 9.6c-23.2 2.3-45.9 8.9-66.8 19.3L272 512z"/></svg>
             <h1> My Library </h1>
         </div>
-        <button>
+        <button class=" btn open-dialog-btn" onclick="showPopUp('add-book-dialog')">
             Book
             <svg id="add-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>
         </button>
     </nav>
     <main>
+        <div class="popup-container" id="add-book-dialog">
+            <div id="popup-box">
+                <form action="" method="post">
+                    <fieldset>
+                        <div class="input-container">
+                            <label for="title">Title :</label>
+                            <input type="text" name="title" id="title-input">
+                        </div>
+
+                        <div class="input-container">
+                            <label for="author">Author : </label>
+                            <input type="text" name="author" id="author-input">
+                        </div>
+
+                        <div class="input-container">
+                            <label for="pages">Number of pages : </label>
+                            <input type="number" name="pages" id="pages-input" min="1">
+                        </div>
+
+                        <div class="input-container">
+                            <label for="read"> Have you read it yet ?</label>
+                            <input type="checkbox" name="read" id="read-input">
+                        </div>
+                        <div class="dialog-actions-container">
+                            <button type="button"  class=" btn closePopUpBtn" onclick="showPopUp('add-book-dialog')">Close</button>
+                            <button class="btn addBookBtn" onclick="submitNewBook(event);showPopUp('popupAddContainer');">Add</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
         <div class="books-container">
             <div class="book-card">
                 <h2 class="book-title">book title</h2>
                 <h3 class="book-author">By book author</h3>
                 <h4 class="book-pages">999 pages</h4>
                 <div class="book-options">
-                    <button class="read-toggle-btn">READ</button>
-                    <button class="archive-btn">ARCHIVE</button>
+                    <button class="btn read-toggle-btn">READ</button>
+                    <button class="btn archive-btn">ARCHIVE</button>
                 </div>
             </div>
-
-
-
-
         </div>
     </main>
     <footer>
