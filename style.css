@@ -85,12 +85,14 @@ button{
     padding: 1rem;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
 }
 
 .book-options{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 1rem;
 }
 
 .popup-container {
@@ -146,6 +148,7 @@ input[type="number"]{
 input[type="checkbox"]{
   width: 1.2rem;
   height: 1.2rem;
+  accent-color: rgb(62, 65, 62);
 }
 
 .input-container{
