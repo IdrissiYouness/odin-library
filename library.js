@@ -30,11 +30,11 @@ function TogglePopUp (id) {
 
  const addNewBookBtn = document.querySelector('.btn.addBookBtn');
 
-
-
  addNewBookBtn.addEventListener('click', (event)=>{
 
     event.preventDefault();
+
+    const libraryHolder = document.querySelector(".books-container");
 
     const title = document.querySelector("#title-input").value;
     const author = document.querySelector("#author-input").value;
@@ -43,12 +43,62 @@ function TogglePopUp (id) {
 
     newBook = new Book(title,author,numberOfPages,isRead);
     newBook.addBookToLibrary();
+
+    const BookCard = RenderBookCard(newBook);
+    libraryHolder.appendChild(BookCard);
+
+
     console.log(myLibrary);
 
  });
 
 
+function RenderBookCard(book){
 
+  const bookHolder = document.createElement("div");
+  bookHolder.setAttribute("class", "book-card");
+
+  const titleHolder = document.createElement("h2");
+  titleHolder.setAttribute("class", "book-title");
+
+  const authorHolder = document.createElement("h3");
+  authorHolder.setAttribute("class", "book-author");
+
+  const pagesNbrHolder = document.createElement("h4");
+  pagesNbrHolder.setAttribute("class", "book-pages");
+
+  const BookOptionsHolder = document.createElement("div");
+  BookOptionsHolder.setAttribute("class", "book-options");
+
+
+  bookHolder.appendChild(titleHolder);
+  bookHolder.appendChild(authorHolder);
+  bookHolder.appendChild(pagesNbrHolder);
+  bookHolder.appendChild(BookOptionsHolder);
+
+
+  const readToggleBtn = document.createElement("button");
+  readToggleBtn.classList.add('btn','read-toggle-btn');
+
+  const archiveBtn = document.createElement("button");
+  archiveBtn.classList.add('btn','archive-btn');
+
+
+  BookOptionsHolder.appendChild(readToggleBtn);
+  BookOptionsHolder.appendChild(archiveBtn);
+
+
+  //rendering data from created book
+
+  titleHolder.innerText = book.title;
+  authorHolder.innerText = book.author;
+  pagesNbrHolder.innerText = book.pages;
+  readToggleBtn.innerText = book.isRead ? "READ" : "NOT YET";
+  archiveBtn.innerText = "Archive"
+
+
+  return bookHolder;
+}
 
 
 
