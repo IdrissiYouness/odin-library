@@ -12,23 +12,29 @@ class Book {
 
 
 const  myLibrary = [];
+let  idCounter = 0;
 let newBook;
+
+
 
 
 Book.prototype.addBookToLibrary = function(){
   myLibrary.push(this)
+  this.id = idCounter++;
 }
 
 Book.prototype.archiveBook = function(){
     this.isArchived = !this.isArchived;
 }
 
-function TogglePopUp (id) {
-  const popup = document.getElementById(id);
+function TogglePopUp () {
+  const popup = document.getElementById('add-book-dialog');
   popup.classList.toggle("show");
 }
 
  const addNewBookBtn = document.querySelector('.btn.addBookBtn');
+
+
 
  addNewBookBtn.addEventListener('click', (event)=>{
 
@@ -47,7 +53,7 @@ function TogglePopUp (id) {
     const BookCard = RenderBookCard(newBook);
     libraryHolder.appendChild(BookCard);
 
-
+    TogglePopUp();
     console.log(myLibrary);
 
  });
@@ -57,6 +63,7 @@ function RenderBookCard(book){
 
   const bookHolder = document.createElement("div");
   bookHolder.setAttribute("class", "book-card");
+  bookHolder.setAttribute("id",`book-${book.id}`);
 
   const titleHolder = document.createElement("h2");
   titleHolder.setAttribute("class", "book-title");
@@ -96,9 +103,27 @@ function RenderBookCard(book){
   readToggleBtn.innerText = book.isRead ? "READ" : "NOT YET";
   archiveBtn.innerText = "Archive"
 
+  archiveBtn.addEventListener('click',function(event){
+
+    event.preventDefault();
+
+    const targetBookCard = event.currentTarget.parentElement.parentElement;
+
+    const bookId = targetBookCard.id.match(/\d+/)[0];
+
+    myLibrary[bookId].archiveBook();
+    console.log(myLibrary[bookId].isArchived);
+
+  })
 
   return bookHolder;
 }
+
+
+
+
+
+
 
 
 
