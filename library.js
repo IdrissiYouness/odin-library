@@ -27,6 +27,10 @@ Book.prototype.archiveBook = function(){
     this.isArchived = !this.isArchived;
 }
 
+Book.prototype.toggleRead = function(){
+    this.isRead = !this.isRead;
+}
+
 function TogglePopUp () {
   const popup = document.getElementById('add-book-dialog');
   popup.classList.toggle("show");
@@ -54,7 +58,7 @@ function TogglePopUp () {
     libraryHolder.appendChild(BookCard);
 
     TogglePopUp();
-    console.log(myLibrary);
+    console.log(`book number ${newBook.id} created`);
 
  });
 
@@ -100,8 +104,10 @@ function RenderBookCard(book){
   titleHolder.innerText = book.title;
   authorHolder.innerText = book.author;
   pagesNbrHolder.innerText = book.pages;
-  readToggleBtn.innerText = book.isRead ? "READ" : "NOT YET";
+  readToggleBtn.innerText = book.isRead ? "Read" : "Not Yet";
   archiveBtn.innerText = "Archive"
+
+
 
   archiveBtn.addEventListener('click',function(event){
 
@@ -112,7 +118,28 @@ function RenderBookCard(book){
     const bookId = targetBookCard.id.match(/\d+/)[0];
 
     myLibrary[bookId].archiveBook();
-    console.log(myLibrary[bookId].isArchived);
+
+    console.log(`book number : ${myLibrary[bookId].id} is archived`);
+
+    targetBookCard.style.display = "none";
+
+  })
+
+
+  readToggleBtn.addEventListener('click',function(event){
+
+    event.preventDefault();
+
+    const targetBookCard = event.currentTarget.parentElement.parentElement;
+
+    const bookId = targetBookCard.id.match(/\d+/)[0];
+
+    myLibrary[bookId].toggleRead();
+
+    console.log(`book number : ${myLibrary[bookId].id} is toggled read ${myLibrary[bookId].isRead}`);
+
+    event.currentTarget.innerText = myLibrary[bookId].isRead ? "Read" : "Not Yet";
+
 
   })
 
