@@ -10,6 +10,7 @@
 
 *{
     font-family: "Chomsky", system-ui;
+    font-size: 1.1rem;
 }
 body{
     display: grid;
@@ -40,7 +41,7 @@ nav{
 
 #add-icon{
     width: 18px;
-    fill: #e0c0a0;
+    fill: #3b2713;
 }
 
 /*
@@ -75,6 +76,8 @@ button{
     gap:5px;
     cursor: pointer;
     background-color: #e0c0a0;
+    color: #3b2713;
+
 }
 
 button:hover{
@@ -95,7 +98,7 @@ button:hover{
 .book-card{
     display: flex;
     flex-direction: column;
-    border:solid black;
+    border:solid #3b2713;
     padding: 1rem;
     justify-content: center;
     align-items: center;
@@ -146,7 +149,7 @@ button:hover{
 
 .btn{
     cursor: pointer;
-    border: 0;
+    border: 2px solid #3b2713;
     padding:8px;
 }
 

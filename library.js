@@ -36,6 +36,19 @@ function TogglePopUp () {
   popup.classList.toggle("show");
 }
 
+  const openDialogBtn = document.querySelector(".btn.open-dialog-btn");
+  const addIcon = document.querySelector("#add-icon");
+
+  openDialogBtn.addEventListener('mouseover', () => {
+    addIcon.style.fill = '#e0c0a0';
+  });
+
+
+  openDialogBtn.addEventListener('mouseout', () => {
+    addIcon.style.fill = '#3b2713';
+  });
+
+
  const addNewBookBtn = document.querySelector('.btn.addBookBtn');
 
 
@@ -61,6 +74,9 @@ function TogglePopUp () {
     console.log(`book number ${newBook.id} created`);
 
  });
+
+
+
 
 
 function RenderBookCard(book){
